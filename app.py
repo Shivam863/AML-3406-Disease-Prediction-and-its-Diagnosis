@@ -36,21 +36,8 @@ def predict():
     for k,v in Diagnosis.items():
         if k==output:
             treatment= v
-
-
-
+            
     return render_template('index.html', prediction_text='The predicted disease is {}. \n'.format(output),treatment_text="\n The treatments for the {} are: {}.".format(output,treatment))
-
-@app.route('/predict_api',methods=['POST'])
-def predict_api():
-    '''
-    For direct API calls trought request
-    '''
-    data = request.get_json(force=True)
-    prediction = model.predict(pd.DataFrame(data,index=[0]))
-
-    output = " ".join(prediction)
-    return jsonify(output)
 
 if __name__ == "__main__":
     app.run(debug=True)
