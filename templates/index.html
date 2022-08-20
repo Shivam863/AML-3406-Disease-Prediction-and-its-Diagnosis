@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Disease Prediction</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style> 
+    body {
+      background-image: url("https://alpharettainternalmed.com/wp-content/uploads/2016/11/Internal-Medicine.jpg");
+      background-repeat: no-repeat, repeat;
+      background-color: #cccccc;
+      background-size:cover;
+    }
+    </style>
+<body>
+    <div class="login">
+   
+        <!-- Main Input For Receiving Query to our ML -->
+       <form action="{{ url_for('predict')}}"method="post">
+        <label for="cars">Choose symptoms:</label>
+        <select name="Symptoms" id="Symptoms" multiple>
+            <option value="itching">itching</option>
+            <option value="skin_rash">skin_rash</option>
+            <option value="nodal_skin_eruptions">nodal_skin_eruptions</option>
+            <option value="continuous_sneezing">continuous_sneezing</option>
+            <option value="shivering">shivering</option>
+            <option value="chills">chills</option>
+            <option value="joint_pain">joint_pain</option>
+            <option value="stomach_pain">stomach_pain</option>
+            <option value="acidity">acidity</option>
+            <option value="ulcers_on_tongue">ulcers_on_tongue</option>
+            <option value="muscle_wasting">muscle_wasting</option>
+            <option value="vomiting">vomiting</option>
+            <option value="burning_micturition">burning_micturition</option>
+            <option value="spotting_ urination">spotting_ urination</option>
+            <option value="fatigue">fatigue</option>
+            <option value="weight_gain">weight_gain</option>
+            <option value="anxiety">anxiety</option>
+            <option value="mood_swings">mood_swings</option>
+            <option value="weight_loss">weight_loss</option>
+            <option value="restlessness">restlessness</option>
+            <option value="lethargy">lethargy</option>
+            <option value="irregular_sugar_level">irregular_sugar_level</option>
+            <option value="cough">cough</option>
+            <option value="high_fever">high_fever</option>
+            <option value="sunken_eyes">sunken_eyes</option>
+            <option value="breathlessness">breathlessness</option>
+            <option value="sweating">sweating</option>
+            <option value="indigestion">indigestion</option>
+            <option value="headache">headache</option>
+            <option value="yellowish_skin">yellowish_skin</option>
+            <option value="dark_urine">dark_urine</option>
+            <option value="nausea">nausea</option>
+            <option value="loss_of_appetite">loss_of_appetite</option>
+            <option value="pain_behind_the_eyes">pain_behind_the_eyes</option>
+            <option value="back_pain">back_pain</option>
+            <option value="constipation">constipation</option>
+            <option value="abdominal_pain">abdominal_pain</option>
+            <option value="diarrhoea">diarrhoea</option>
+            <option value="mild_fever">mild_fever</option>
+            <option value="yellow_urine">yellow_urine</option>
+            <option value="yellowing_of_eyes">yellowing_of_eyes</option>
+            <option value="acute_liver_failure">acute_liver_failure</option>
+            <option value="fluid_overload">fluid_overload</option>
+            <option value="swelling_of_stomach">swelling_of_stomach</option>
+            <option value="swelled_lymph_nodes">swelled_lymph_nodes</option>
+            <option value="malaise">malaise</option>
+            <option value="blurred_and_distorted_vision">blurred_and_distorted_vision</option>
+            <option value="phlegm">phlegm</option>
+            <option value="throat_irritation">throat_irritation</option>
+            <option value="chest_pain">chest_pain</option>
+            <option value="weakness_in_limbs">weakness_in_limbs</option>
+            <option value="fast_heart_rate">fast_heart_rate</option>
+            <option value="pain_during_bowel_movements">pain_during_bowel_movements</option>
+            <option value="neck_pain">neck_pain</option>
+            <option value="dizziness">dizziness</option>
+            <option value="cramps">cramps</option>
+            <option value="obesity">obesity</option>
+            <option value="knee_pain">knee_pain</option>
+            <option value="muscle_weakness">muscle_weakness</option>
+            <option value="stiff_neck">stiff_neck</option>
+            <option value="swelling_joints">swelling_joints</option>
+            <option value="movement_stiffness">movement_stiffness</option>
+            <option value="spinning_movements">spinning_movements</option>
+            <option value="loss_of_balance">loss_of_balance</option>
+            <option value="weakness_of_one_body_side">weakness_of_one_body_side</option>
+            <option value="bladder_discomfort">bladder_discomfort</option>
+            <option value="passage_of_gases">passage_of_gases</option>
+            <option value="toxic_look_(typhos)">toxic_look_(typhos)</option>
+            <option value="depression">depression</option>
+            <option value="irritability">irritability</option>
+            <option value="muscle_pain">muscle_pain</option>
+            <option value="red_spots_over_body">red_spots_over_body</option>
+            <option value="family_history">family_history</option>
+            <option value="mucoid_sputum">mucoid_sputum</option>
+            <option value="rusty_sputum">rusty_sputum</option>
+            <option value="lack_of_concentration">lack_of_concentration</option>
+            <option value="visual_disturbances">visual_disturbances</option>
+            <option value="blood_in_sputum">blood_in_sputum</option>
+            <option value="pus_filled_pimples">pus_filled_pimples</option>
+            <option value="skin_peeling">skin_peeling</option>
+            <option value="blister">blister</option>        
+        </select>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+       </form>
+   
+      <br>
+      <br>
+      <b style="font-size:30px">{{ prediction_text }}</b><br>
+      <b style="font-size:30px">{{ treatment_text }}</b>
+   
+    </div>
+    <center><h3 style="color: rgb(46, 111, 165); font-size: 45px; padding: 100px; padding-bottom: 50px; font-style: oblique;">DISEASE PREDICTION AND DIAGNOSES</h3></center>
+    <center><p style="color: rgb(46, 102, 148); font-size: 30px;font-style: oblique">
+    <b> Project By</b><br>
+    <b> Himanshu Hooda (C0814556)</b><br>
+    <b> Mohammad Shaiq (C0814155)</b><br>
+   <b> Rithik Uppal(C0823009)</b><br>
+    <b> Shivam Kumar(C0811863)</b>
+    </p></center>
+   
+   </body>
+
+</html>
